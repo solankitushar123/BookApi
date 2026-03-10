@@ -1,4 +1,5 @@
 ﻿
+using BooksApi.core.Requests;
 using BooksApi.Core.Dtos;
 using BooksApi.Services;
 using LibraryApi.Services;
@@ -21,6 +22,7 @@ public static class IssueEndpoints
         IEndpointRouteBuilder IssueGroup = endpoints.MapIssueBookGroup();
         IssueGroup.MapGet("", GetIssueBook);
         IssueGroup.MapGet("{id:int}", GetIssueBookId);
+        IssueGroup.MapPost("book/{bookid:int}/user/{Memberid:int}", AddIssuedBook);
         return endpoints;
     }
 
@@ -34,5 +36,10 @@ public static class IssueEndpoints
     {
         BookIssueDto? IssueBook = service.GetIssuedBook().FirstOrDefault(b => b.BookIssueId == id);
         return IssueBook is null ? TypedResults.NotFound() : TypedResults.Ok(IssueBook);
+    }
+    private static IResult AddIssuedBook(IssueBookservice service, int bookid, int Memberid, CreateBookIssueRequest request)
+    {
+        BookIssueDto? issuedbook = service.AddBook(bookid, Memberid, request);
+        return issuedbook is null ? TypedResults.NotFound() : TypedResults.Ok(issuedbook);
     }
 }
