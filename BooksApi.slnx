@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BooksApi.core/BooksApi.core.csproj" DisplayName="BooksApi.Core" />
+  <Project Path="BooksApi.Persistence/BooksApi.Persistence.csproj" />
+  <Project Path="BooksApi.Services/BooksApi.Services.csproj" />
+  <Project Path="BooksApi.web/BooksApi.web.csproj" />
+</Solution>
